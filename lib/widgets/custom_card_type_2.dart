@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 // import 'package:transparent_image/transparent_image.dart';
 
 class CustomCardType2 extends StatelessWidget {
-  const CustomCardType2({Key? key}) : super(key: key);
+
+  final String imageUrl;
+  final String? name;
+
+  const CustomCardType2({
+    Key? key,
+    required this.imageUrl,
+    this.name
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +24,10 @@ class CustomCardType2 extends StatelessWidget {
       shadowColor: AppTheme.primary.withOpacity(0.6),
       child: Column(
         children: [
-          const FadeInImage(
-            image: NetworkImage('https://img.freepik.com/premium-vector/meadows-landscape-with-mountains-hill_104785-943.jpg?w=2000'),
-            placeholder: AssetImage('assets/carga.jpg'),
-            fadeInDuration: Duration( milliseconds: 300 ),
+          FadeInImage(
+            image: NetworkImage(imageUrl),
+            placeholder: const AssetImage('assets/jar-loading.gif'),
+            fadeInDuration: const Duration( milliseconds: 300 ),
             width: double.infinity,
             height: 250.0,
             fit: BoxFit.cover
@@ -28,11 +36,13 @@ class CustomCardType2 extends StatelessWidget {
             image: ('https://img.freepik.com/premium-vector/meadows-landscape-with-mountains-hill_104785-943.jpg?w=2000'),
             placeholder: kTransparentImage
           ),*/
-          Container(
-            alignment: AlignmentDirectional.centerEnd,
-            padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
-            child: const Text('Un hermoso paisaje')
-          )
+          if ( name != null )
+            Container(
+              alignment: AlignmentDirectional.centerEnd,
+              padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
+              // child: Text(name ?? 'No title')
+              child: Text(name!)
+            )
         ],
       )
     );
