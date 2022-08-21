@@ -4,6 +4,34 @@ class AlertScreen extends StatelessWidget {
 
   const AlertScreen({Key? key}) : super(key: key);
 
+  void displayDialog(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          elevation: 5,
+          title: const Text('Título'),
+          shape: RoundedRectangleBorder( borderRadius: BorderRadiusDirectional.circular(10) ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text('Este es el contenido de la alerta'),
+              SizedBox(height: 10),
+              FlutterLogo(size: 100)
+            ],
+          ),
+          actions: [
+            TextButton(
+             onPressed: () => Navigator.pop(context),
+             child: const Text('Cancelar'),
+            )
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +46,7 @@ class AlertScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Text('Mostrar alerta', style: TextStyle(fontSize: 16)),
           ),
-          onPressed: () {
-
-          }
+          onPressed: () => displayDialog(context)
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -31,5 +57,4 @@ class AlertScreen extends StatelessWidget {
       ),
     );
   }
-
 }
