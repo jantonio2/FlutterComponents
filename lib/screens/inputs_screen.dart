@@ -10,7 +10,7 @@ class InputsScreen extends StatelessWidget {
     final GlobalKey<FormState> myFormKey = GlobalKey<FormState>();
 
     final Map<String, String> formValues = {
-      'firs_name': 'Antonio',
+      'first_name': 'Antonio',
       'last_name': 'Rocha',
       'email': 'antonio@google.com',
       'password': '123456',
@@ -28,16 +28,16 @@ class InputsScreen extends StatelessWidget {
             key: myFormKey,
             child: Column(
               children: [
-                const CustomInputField(labelText: 'Nombre', hintText: 'Nombre'),
+                CustomInputField(labelText: 'Nombre', hintText: 'Nombre', formProperty: 'first_name', formValues: formValues),
                 const SizedBox(height: 30),
 
-                const CustomInputField(labelText: 'Apellido', hintText: 'Apellido'),
+                CustomInputField(labelText: 'Apellido', hintText: 'Apellido', formProperty: 'last_name', formValues: formValues),
                 const SizedBox(height: 30),
 
-                const CustomInputField(labelText: 'Correo', hintText: 'Correo', keyBoardType: TextInputType.emailAddress),
+                CustomInputField(labelText: 'Correo', hintText: 'Correo', keyBoardType: TextInputType.emailAddress, formProperty: 'email', formValues: formValues),
                 const SizedBox(height: 30),
 
-                const CustomInputField(labelText: 'Contraseña', hintText: '*****', obscureText: true),
+                CustomInputField(labelText: 'Contraseña', hintText: '*****', obscureText: true, formProperty: 'password', formValues: formValues),
                 const SizedBox(height: 30),
 
                 ElevatedButton(
